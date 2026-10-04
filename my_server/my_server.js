@@ -16,4 +16,9 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/auth', require('./routes/authentication'));
 
 const PORT = process.env.PORT || 5000;
+
+const path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/upload', require('./routes/doc_uploads'));
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

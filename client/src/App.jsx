@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DocumentViewer from './DocViewer';
 import './App.css';
 
 function App() {
+  const [showViewer, setShowViewer] = useState(false);
+
   return (
     <div className="library-container" style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #ccc', paddingBottom: '1rem' }}>
@@ -13,11 +16,20 @@ function App() {
       </header>
       
       <main style={{ marginTop: '4rem', textAlign: 'center', color: '#666' }}>
-        <h2>A World of Words awaits...</h2>
-        <p>No PDFs or EPUBs found currently!</p>
-        <button style={{ padding: '0.5rem 1rem', marginTop: '1rem', cursor: 'pointer' }}>
-          Upload Document
-        </button>
+        {!showViewer ? (
+          <>
+            <h2>A world of words awaits...</h2>
+            <p>Ready for Module 2!</p>
+            <button 
+              style={{ padding: '0.5rem 1rem', marginTop: '1rem', cursor: 'pointer' }}
+              onClick={() => setShowViewer(true)}
+            >
+              Upload Document
+            </button>
+          </>
+        ) : (
+          <DocumentViewer />
+        )}
       </main>
     </div>
   );
